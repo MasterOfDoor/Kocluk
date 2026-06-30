@@ -1,3 +1,4 @@
+// components/layout/Header.tsx
 'use client'
 
 import Link from 'next/link'
@@ -6,10 +7,12 @@ import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import type { UserRole } from '@/types'
 import Button from '@/components/ui/Button'
+import Avatar from '@/components/ui/Avatar'
 
 interface NavUser {
   name: string
   role: UserRole
+  avatar_url?: string
 }
 
 export default function Header() {
@@ -29,7 +32,7 @@ export default function Header() {
       }
       const { data: profile } = await supabase
         .from('users')
-        .select('name, role')
+        .select('name, role, avatar_url')
         .eq('id', authUser.id)
         .single()
       if (profile) setUser(profile as NavUser)
@@ -74,7 +77,10 @@ export default function Header() {
         <div className="flex items-center gap-3">
           {loading ? null : user ? (
             <>
-              <span className="text-sm text-gray-600 hidden sm:block">{user.name}</span>
+              <Link href="/profile" className="flex items-center gap-2 hover:bg-gray-50 px-2 py-1 rounded-lg transition-colors border border-transparent hover:border-gray-200">
+                <span className="text-sm font-semibold text-gray-700 hidden sm:block">{user.name}</span>
+                <Avatar name={user.name} src={user.avatar_url} size="sm" />
+              </Link>
               <Button variant="ghost" size="sm" onClick={handleLogout}>
                 Çıkış
               </Button>
@@ -103,7 +109,6 @@ function getNavLinks(role?: UserRole) {
     return [
       { href: '/dashboard', label: 'Öğrencilerim' },
       { href: '/dashboard/requests', label: 'İstekler' },
-      { href: '/dashboard/profile', label: 'Profil' },
     ]
   }
   if (role === 'student') {

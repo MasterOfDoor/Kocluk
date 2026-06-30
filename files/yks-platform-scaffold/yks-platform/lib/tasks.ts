@@ -51,6 +51,22 @@ export async function copyTaskToSlot(
   return createTask(student_id, target, rest as TaskFormValues, supabase)
 }
 
+export async function updateTask(
+  taskId: string,
+  updates: Partial<TaskFormValues>,
+  supabase?: SupabaseClient
+): Promise<Task> {
+  const client = getClient(supabase)
+  const { data, error } = await client
+    .from('tasks')
+    .update(updates)
+    .eq('id', taskId)
+    .select()
+    .single()
+  if (error) throw error
+  return data as Task
+}
+
 export async function deleteTask(taskId: string, supabase?: SupabaseClient): Promise<void> {
   const client = getClient(supabase)
   const { error } = await client.from('tasks').delete().eq('id', taskId)

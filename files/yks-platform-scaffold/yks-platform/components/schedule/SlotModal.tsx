@@ -8,10 +8,11 @@ const CATEGORIES: TaskCategory[] = ['Soru Bankası', 'Konu Tekrarı', 'Deneme', 
 interface Props {
   onConfirm: (values: TaskFormValues) => void
   onClose: () => void
+  initialData?: TaskFormValues
 }
 
-export default function SlotModal({ onConfirm, onClose }: Props) {
-  const [form, setForm] = useState<TaskFormValues>({
+export default function SlotModal({ onConfirm, onClose, initialData }: Props) {
+  const [form, setForm] = useState<TaskFormValues>(initialData ?? {
     category: 'Soru Bankası',
     title: '',
     content: '',
