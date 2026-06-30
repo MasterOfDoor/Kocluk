@@ -69,25 +69,29 @@ export async function loginAction(email: string, password: string) {
 
   // Step 3: Auto-create profile if missing (signup trigger may have failed)
   if (!profile.data) {
-    diag(tag, 'Profile not found — auto-creating', { profileError: profile.error?.message })
+    diag(tag, 'Profile not found — auto-creating with upsert', { profileError: profile.error?.message })
     const serviceClient = createServiceClient()
-    const { error: insertError } = await serviceClient
+    
+    const userRole = data.user.user_metadata?.role || 'student'
+    const userName = data.user.user_metadata?.name || email.split('@')[0]
+    
+    const { error: upsertError } = await serviceClient
       .from('users')
-      .insert({
+      .upsert({
         id: data.user.id,
         email: data.user.email,
-        name: data.user.user_metadata?.name || email.split('@')[0],
-        role: data.user.user_metadata?.role || 'student',
-        approval_status: 'approved'
-      })
+        name: userName,
+        role: userRole,
+        approval_status: userRole === 'teacher' ? 'pending' : 'approved'
+      }, { onConflict: 'id' })
 
-    if (insertError) {
-      diagErr(tag, 'Profile auto-creation failed', insertError)
-      return { error: 'Profil oluşturulamadı. Lütfen yöneticiyle iletişime geçin.' }
+    if (upsertError) {
+      diagErr(tag, 'Profile auto-creation failed', upsertError)
+      return { error: `Profil oluşturulamadı: ${upsertError.message}` }
     }
 
     diag(tag, 'Profile auto-created, re-fetching')
-    profile = await supabase
+    profile = await serviceClient
       .from('users')
       .select('role, approval_status')
       .eq('id', data.user.id)
