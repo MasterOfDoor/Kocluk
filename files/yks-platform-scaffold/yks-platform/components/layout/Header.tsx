@@ -54,8 +54,8 @@ export default function Header() {
     <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
       <div className="container-app flex items-center justify-between h-16">
         <Link href="/" className="flex items-center gap-2 font-bold text-xl text-indigo-600">
-          <span className="w-8 h-8 bg-indigo-600 text-white rounded-lg flex items-center justify-center text-sm">YKS</span>
-          Koçluk
+          <span className="w-8 h-8 bg-indigo-600 text-white rounded-lg flex items-center justify-center text-sm">ZTK</span>
+          Zeynobot The Koç
         </Link>
 
         {!loading && (

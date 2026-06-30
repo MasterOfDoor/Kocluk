@@ -5,8 +5,8 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
-  title: 'YKS Koçluk Platformu',
-  description: 'YKS hazırlık süreciniz için kişiselleştirilmiş koçluk ve haftalık program yönetimi',
+  title: 'Zeynobot The Koç',
+  description: 'Zeynep Naz Karahangil (Sayısal 13.105) ile YKS hazırlık sürecinde kişiye özel koçluk ve hedef odaklı çalışma programı.',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

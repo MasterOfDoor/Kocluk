@@ -3,144 +3,107 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import Button from '@/components/ui/Button'
 
-const FEATURES = [
-  {
-    title: 'Haftalık Program',
-    description: '7 günlük, 8 slotluk esnek programınızı öğretmeninizle birlikte oluşturun ve takip edin.',
-    icon: '📅',
-  },
-  {
-    title: 'Öğretmen Eşleşmesi',
-    description: 'Onaylı öğretmenleri inceleyin, profillerini görün ve size uygun olanı seçin.',
-    icon: '👨‍🏫',
-  },
-  {
-    title: 'İlerleme Takibi',
-    description: 'Soru bankası, deneme ve video çalışmalarınızı kategorize ederek ilerlemenizi görün.',
-    icon: '📈',
-  },
-]
-
-const STEPS = [
-  { step: '1', title: 'Kayıt Ol', description: 'Öğrenci veya öğretmen olarak ücretsiz hesap oluşturun.' },
-  { step: '2', title: 'Öğretmen Seç', description: 'Profilleri inceleyin ve istek gönderin.' },
-  { step: '3', title: 'Program Oluştur', description: 'Öğretmeninizle birlikte haftalık programınızı planlayın.' },
-]
-
-const STATS = [
-  { value: '500+', label: 'Aktif Öğrenci' },
-  { value: '50+', label: 'Onaylı Öğretmen' },
-  { value: '10K+', label: 'Tamamlanan Görev' },
-]
-
 export default function HomePage() {
   return (
     <>
       <Header />
-      <main>
-        {/* Hero */}
-        <section className="relative bg-gradient-to-br from-indigo-600 via-indigo-700 to-purple-800 text-white overflow-hidden">
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920&q=80')] bg-cover bg-center"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/90 via-indigo-700/80 to-purple-800/70"></div>
+      <main className="bg-slate-50 min-h-screen">
+        {/* Hero Section */}
+        <section className="relative overflow-hidden bg-gradient-to-br from-indigo-500 via-purple-500 to-fuchsia-500 text-white pb-32 pt-20 sm:pt-32 sm:pb-40">
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518655048521-f130df041f66?q=80&w=2000')] bg-cover bg-center mix-blend-overlay opacity-30"></div>
+          <div className="relative container-app text-center max-w-4xl mx-auto px-4">
+            <h1 className="text-5xl sm:text-7xl font-extrabold tracking-tight mb-8 drop-shadow-md">
+              Merhaba, Ben Zeynep Naz Karahangil! 👋
+            </h1>
+            <p className="text-xl sm:text-2xl font-medium mb-10 text-indigo-50 leading-relaxed drop-shadow">
+              Sıradan bir koçluktan çok daha fazlası... Benimle birlikte hedeflediğin YKS sıralamasına ulaşmaya hazır mısın? 🚀
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Link href="/register">
+                <Button size="lg" className="w-full sm:w-auto bg-white text-indigo-600 hover:bg-gray-50 shadow-xl text-lg px-8 py-4 rounded-full font-bold transform hover:scale-105 transition-all">
+                  Hemen Kayıt Ol ve Başlayalım!
+                </Button>
+              </Link>
+            </div>
           </div>
-          <div className="relative container-app py-24 md:py-32">
-            <div className="max-w-2xl">
-              <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
-                YKS&apos;ye Hazırlıkta Yanınızdayız
-              </h1>
-              <p className="text-lg text-indigo-100 mb-8 leading-relaxed">
-                Kişiselleştirilmiş haftalık programlar, deneyimli öğretmenler ve
-                hedef odaklı koçluk ile sınav sürecinizi verimli yönetin.
+        </section>
+
+        {/* About Me Section with YKS Ranking Highlight */}
+        <section className="relative -mt-20 z-10 px-4">
+          <div className="container-app max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl p-8 sm:p-12 border border-gray-100 flex flex-col md:flex-row items-center gap-12">
+            
+            {/* Massive YKS Highlight */}
+            <div className="flex-1 text-center md:text-left">
+              <div className="inline-block bg-indigo-50 px-6 py-2 rounded-full text-indigo-600 font-bold tracking-wider uppercase text-sm mb-6 border border-indigo-100">
+                Geleceğin Matematik Mühendisi
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+                Biraz Benden Bahsedelim...
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed mb-6 font-medium">
+                2006 doğumluyum. Küçükken karate ile uğraşan, oldukça sportif, enerjik, çok eğlenceli ve itiraf etmeliyim ki biraz spastik birisiyim! 🤪
               </p>
-              <div className="flex flex-wrap gap-4">
-                <Link href="/register">
-                  <Button size="lg" className="bg-white text-indigo-700 hover:bg-indigo-50">
-                    Ücretsiz Kayıt Ol
-                  </Button>
-                </Link>
-                <Link href="/login">
-                  <Button size="lg" variant="secondary" className="border-white/30 text-white hover:bg-white/10 bg-transparent">
-                    Giriş Yap
-                  </Button>
-                </Link>
+              <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                Şu anda <strong>Yıldız Teknik Üniversitesi'nde Matematik Mühendisliği</strong> okuyorum. Daha önce bir etüt merkezinde 1 yıl kadar öğretmenlik deneyimim oldu, yani öğrenci psikolojisini ve sürecin zorluklarını çok iyi biliyorum.
+              </p>
+              
+              <div className="mt-8 bg-gradient-to-r from-amber-100 to-orange-100 border-l-4 border-amber-500 p-6 rounded-r-2xl transform hover:-translate-y-1 transition-transform shadow-sm">
+                <p className="text-sm text-amber-800 font-bold uppercase tracking-wider mb-1">Başarımın Kanıtı</p>
+                <div className="flex items-baseline justify-center md:justify-start gap-3">
+                  <span className="text-6xl font-black text-amber-600 tracking-tighter">13.105</span>
+                  <span className="text-2xl font-bold text-amber-700 leading-tight">Sayısal<br/>Sıralama</span>
+                </div>
+                <p className="text-amber-800 mt-4 font-medium">
+                  Bu zorlu yollardan ben de geçtim. Şimdi sıra sende! Başarıya giden yolda sana rehberlik etmek için buradayım.
+                </p>
+              </div>
+            </div>
+
+            {/* Profile Image (Using Zenep.jpeg) */}
+            <div className="w-64 h-64 sm:w-80 sm:h-80 shrink-0 relative rounded-full overflow-hidden shadow-2xl border-4 border-white ring-4 ring-indigo-50">
+              <img src="/images/gallery/Zenep.jpeg" alt="Zeynep Naz Karahangil" className="object-cover w-full h-full" />
+            </div>
+          </div>
+        </section>
+
+        {/* Gallery Section */}
+        <section className="py-24 bg-slate-50">
+          <div className="container-app max-w-6xl mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Benim Dünyamdan Kareler 📸</h2>
+              <p className="text-gray-500">Çalışırken, eğlenirken, hayatın içinden...</p>
+            </div>
+            
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 auto-rows-[250px]">
+              <div className="relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group md:col-span-2 md:row-span-2">
+                <img src="/images/gallery/6.jpeg" alt="Zeynep 1" className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div className="relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group">
+                <img src="/images/gallery/123.jpeg" alt="Zeynep 2" className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div className="relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group">
+                <img src="/images/gallery/4.jpeg" alt="Zeynep 3" className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div className="relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group">
+                <img src="/images/gallery/5.jpeg" alt="Zeynep 4" className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div className="relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group md:col-span-2">
+                <img src="/images/gallery/8.jpeg" alt="Zeynep 5" className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" />
               </div>
             </div>
           </div>
         </section>
 
-        {/* Features */}
-        <section id="features" className="relative py-20 bg-white overflow-hidden">
-          <div className="absolute inset-0 opacity-5">
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=1920&q=80')] bg-cover bg-center"></div>
-          </div>
-          <div className="relative container-app">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-3">Platform Özellikleri</h2>
-              <p className="text-gray-500 max-w-xl mx-auto">
-                YKS hazırlık sürecinizi uçtan uca yönetmenizi sağlayan araçlar
-              </p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {FEATURES.map(f => (
-                <div key={f.title} className="text-center p-6 rounded-2xl border border-gray-100 hover:shadow-lg transition-shadow bg-white/80 backdrop-blur-sm">
-                  <div className="text-4xl mb-4">{f.icon}</div>
-                  <h3 className="text-lg font-semibold mb-2">{f.title}</h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">{f.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* How it works */}
-        <section id="how-it-works" className="relative py-20 bg-gray-50 overflow-hidden">
-          <div className="absolute inset-0 opacity-5">
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1920&q=80')] bg-cover bg-center"></div>
-          </div>
-          <div className="relative container-app">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-3">Nasıl Çalışır?</h2>
-              <p className="text-gray-500">Üç basit adımda başlayın</p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {STEPS.map(s => (
-                <div key={s.step} className="relative text-center bg-white/60 backdrop-blur-sm p-6 rounded-2xl">
-                  <div className="w-12 h-12 bg-indigo-600 text-white rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-4">
-                    {s.step}
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">{s.title}</h3>
-                  <p className="text-sm text-gray-500">{s.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Social proof */}
-        <section className="py-16 bg-white">
-          <div className="container-app">
-            <div className="grid grid-cols-3 gap-8 text-center">
-              {STATS.map(s => (
-                <div key={s.label}>
-                  <p className="text-3xl md:text-4xl font-bold text-indigo-600">{s.value}</p>
-                  <p className="text-sm text-gray-500 mt-1">{s.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* CTA */}
-        <section className="py-20 bg-indigo-600">
-          <div className="container-app text-center">
-            <h2 className="text-3xl font-bold text-white mb-4">Hemen Başlayın</h2>
-            <p className="text-indigo-100 mb-8 max-w-lg mx-auto">
-              Ücretsiz hesap oluşturun, size uygun öğretmeni bulun ve hedeflerinize odaklanın.
+        <section className="py-24 bg-white border-t border-gray-100">
+          <div className="container-app text-center max-w-3xl mx-auto px-4">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">Hazır Mısın? 🎯</h2>
+            <p className="text-xl text-gray-500 mb-10 leading-relaxed">
+              Kayıt ol, programını birlikte oluşturalım ve seni hayallerindeki üniversiteye adım adım yaklaştıralım!
             </p>
             <Link href="/register">
-              <Button size="lg" className="bg-white text-indigo-700 hover:bg-indigo-50">
-                Kayıt Ol
+              <Button size="lg" className="bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg text-lg px-10 py-4 rounded-full font-bold transform hover:scale-105 transition-all">
+                Aramıza Katıl
               </Button>
             </Link>
           </div>
