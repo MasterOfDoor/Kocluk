@@ -88,7 +88,7 @@ export default function HomePage() {
                 <img src="/images/gallery/5.jpeg" alt="Zeynep 4" className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group md:col-span-2">
-                <img src="/images/gallery/8.jpeg" alt="Zeynep 5" className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" />
+                <img src="/images/gallery/11.jpeg" alt="Zeynep 5" className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" />
               </div>
             </div>
           </div>
