@@ -19,10 +19,8 @@ export default function HomePage() {
               Sıradan bir koçluktan çok daha fazlası... Benimle birlikte hedeflediğin YKS sıralamasına ulaşmaya hazır mısın? 🚀
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link href="/register">
-                <Button size="lg" className="w-full sm:w-auto bg-white text-indigo-600 hover:bg-gray-50 shadow-xl text-lg px-8 py-4 rounded-full font-bold transform hover:scale-105 transition-all">
+              <Link href="/register" className="inline-flex items-center justify-center font-bold text-lg px-8 py-4 rounded-full bg-white text-indigo-600 shadow-xl hover:bg-gray-50 transform hover:scale-105 transition-all w-full sm:w-auto">
                   Hemen Kayıt Ol ve Başlayalım!
-                </Button>
               </Link>
             </div>
           </div>
@@ -101,10 +99,8 @@ export default function HomePage() {
             <p className="text-xl text-gray-500 mb-10 leading-relaxed">
               Kayıt ol, programını birlikte oluşturalım ve seni hayallerindeki üniversiteye adım adım yaklaştıralım!
             </p>
-            <Link href="/register">
-              <Button size="lg" className="bg-indigo-600 text-white hover:bg-indigo-700 shadow-lg text-lg px-10 py-4 rounded-full font-bold transform hover:scale-105 transition-all">
+            <Link href="/register" className="inline-flex items-center justify-center font-bold text-lg px-10 py-4 rounded-full bg-indigo-600 text-white shadow-lg hover:bg-indigo-700 transform hover:scale-105 transition-all">
                 Aramıza Katıl
-              </Button>
             </Link>
           </div>
         </section>
