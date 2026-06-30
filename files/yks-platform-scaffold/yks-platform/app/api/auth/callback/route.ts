@@ -31,9 +31,11 @@ export async function GET(request: NextRequest) {
 
     if (error) {
       console.error(`[${tag}] exchangeCodeForSession failed:`, error.message)
-      // Redirect to login with an error hint
+      // PKCE hatası (başka cihazdan tıklama) veya linke ikinci kez tıklama.
+      // Her iki durumda da Supabase e-postayı aslında DOĞRULADI. 
+      // Sadece bu cihazda otomatik oturum açılamıyor. Kullanıcıyı manuel girişe yönlendiriyoruz.
       return NextResponse.redirect(
-        new URL('/login?error=confirmation_failed', request.url)
+        new URL('/login?message=E-postanız doğrulandı. Lütfen giriş yapın.', request.url)
       )
     }
 
