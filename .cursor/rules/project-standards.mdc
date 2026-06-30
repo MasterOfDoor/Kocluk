@@ -1,0 +1,26 @@
+---
+description: Project coding standards, commit discipline, and quality guidelines
+alwaysApply: true
+---
+
+# Project Standards
+
+## Code Quality
+
+- Do not write spaghetti code. Keep functions and components focused on a single responsibility.
+- Avoid repetition. Extract shared logic into reusable helpers in `lib/` and shared UI into `components/ui/`.
+- Prefer Server Components; use `'use client'` only when interactivity requires it.
+- All Supabase queries belong in `lib/` — never duplicate data access in page components.
+
+## Commit & Push Discipline
+
+- Commit like a senior developer: small, focused commits with clear intent.
+- Review changes before committing — no debug code, unused imports, or unrelated files.
+- All commit messages must be written in **English**.
+- Use conventional commit prefixes when appropriate: `feat:`, `fix:`, `refactor:`, `chore:`.
+- Do not include agent names, tool names, or "Co-authored-by" lines in commits or push messages.
+
+## Architecture
+
+- Match existing naming, types, and file structure conventions.
+- Keep diffs minimal — solve the problem without over-engineering.
