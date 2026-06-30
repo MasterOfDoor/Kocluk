@@ -70,7 +70,8 @@ export async function loginAction(email: string, password: string) {
   // Step 3: Auto-create profile if missing (signup trigger may have failed)
   if (!profile.data) {
     diag(tag, 'Profile not found — auto-creating', { profileError: profile.error?.message })
-    const { error: insertError } = await supabase
+    const serviceClient = createServiceClient()
+    const { error: insertError } = await serviceClient
       .from('users')
       .insert({
         id: data.user.id,
