@@ -16,7 +16,17 @@ function diag(tag: string, msg: string, data?: Record<string, unknown>) {
 }
 
 function diagErr(tag: string, msg: string, err: unknown) {
-  const detail = err instanceof Error ? err.message : String(err)
+  let detail: string
+  if (err instanceof Error) {
+    // AuthError has message, status, name — JSON.stringify loses them
+    detail = `${err.name}: ${err.message}`
+    if ('status' in err) detail += ` (status: ${(err as any).status})`
+    if ('code' in err) detail += ` (code: ${(err as any).code})`
+  } else if (typeof err === 'object' && err !== null) {
+    detail = JSON.stringify(err, Object.getOwnPropertyNames(err))
+  } else {
+    detail = String(err)
+  }
   console.error(`[AUTH:${tag}] ${ts()} ❌ ${msg} | ${detail}`)
 }
 
@@ -103,6 +113,17 @@ export async function registerAction(
 ) {
   const tag = 'REGISTER'
   diag(tag, 'Attempt started', { email, name, role })
+
+  // Environment diagnostics — detect missing Vercel env vars
+  const hasUrl = !!process.env.NEXT_PUBLIC_SUPABASE_URL
+  const hasAnon = !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  const hasService = !!process.env.SUPABASE_SERVICE_ROLE_KEY
+  diag(tag, 'Env check', { hasUrl, hasAnon, hasService })
+
+  if (!hasUrl || !hasAnon) {
+    console.error(`[AUTH:${tag}] ❌ Missing Supabase environment variables!`)
+    return { error: 'Sunucu yapılandırma hatası. Lütfen yöneticiyle iletişime geçin.' }
+  }
 
   try {
     const supabase = createClient()
